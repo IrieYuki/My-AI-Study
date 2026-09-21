@@ -1,0 +1,22 @@
+# 依赖清单（macOS / Windows 通用）
+#
+# 重要 1：mediapipe 必须锁死在 0.10.x，这里用 == 精确指定。
+#   1.0.0 / 1.0.1 是 alpha 版本，在 macOS 上有致命 bug：
+#   使用 CPU delegate 时，会在“创建识别器对象”这一步直接 abort（SIGABRT），
+#   终端里只留下：
+#       F0000 graph_service.h:139] Check failed: service_ Service is unavailable.
+#       @ -[DrishtiMetalHelper initWithCalculatorContext:]
+#       @ mediapipe::api2::TensorsToDetectionsCalculator::Open()
+#   因为这是 C++ 层的崩溃而不是 Python 异常，所以 Python 会“意外退出”，
+#   try/except 也拦不住。
+#   千万不要写 mediapipe>=0.10.35，否则 pip 会装成 1.0.1。
+mediapipe==0.10.35
+
+# 重要 2：只装 opencv-contrib-python，不要再装 opencv-python。
+#   mediapipe 0.10.35 自身就依赖 opencv-contrib-python。
+#   两个包会往同一个 cv2 目录里写文件，属于重复安装，
+#   容易引发难以排查的图形界面 / 崩溃问题。
+opencv-contrib-python>=4.9.0
+
+numpy>=1.26.0
+pillow>=10.0.0
