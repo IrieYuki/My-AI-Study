@@ -12,6 +12,9 @@
 
 ## 深度学习案例
 
+> 每个案例的「做了什么 + 知识点」见 [深度学习案例.md](深度学习案例.md)。
+
+
 - [softmax_mnist_demo.ipynb](softmax_mnist_demo.ipynb)：Softmax 手写数字分类
 - [fashion_mnist_cnn_teaching_case.ipynb](fashion_mnist_cnn_teaching_case.ipynb)：CNN 服饰分类
 - [cifar10_cnn_teaching_case.ipynb](cifar10_cnn_teaching_case.ipynb)：CNN 图像分类（含数据增强）
